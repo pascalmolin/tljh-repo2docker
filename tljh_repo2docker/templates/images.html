@@ -23,7 +23,9 @@
     </thead>
     <tbody>
       {% for image in images %}
-      <tr class="image-row" data-image="{{ image.image_name }}" data-display-name="{{ image.display_name }}">
+      <tr class="image-row" data-image="{{ image.image_name }}" data-display-name="{{ image.display_name }}"
+                            data-repo="{{ image.repo }}" data-ref="{{ image.ref }}"
+                            data-mem="{{image.mem_limit}}" data-cpu="{{image.cpu_limit}}">
         <td class="repo-col col-sm-3">
           {{ image.display_name }}
         </td>
@@ -42,9 +44,9 @@
         </td>
         <td class="ref-col col-sm-1">
           {% if image.cpu_limit | length %}
-            {{ image.cpu_limit | replace("G", "") }}
+            {{ image.cpu_limit }}
           {% else %}
-            {{ default_cpu_limit | replace("G", "") }}
+            {{ default_cpu_limit }}
           {%- endif %}
         </td>
         <td class="status-col col-sm-1">
@@ -57,6 +59,9 @@
         </td>
         <td class="build-col col-sm-2 text-center">
           {% if image.status == 'built' %}
+          <a role="button" class="upgrade-environment btn btn-xs btn-warning">
+            Upgrade
+          </a>
           <a role="button" class="remove-environment btn btn-xs btn-danger">
             Remove
           </a>

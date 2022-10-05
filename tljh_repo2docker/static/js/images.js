@@ -39,6 +39,7 @@ require([
     dialog.find(".build-args-input").val("");
     dialog.find(".username-input").val("");
     dialog.find(".password-input").val("");
+    dialog.find(".save-button").text("Create environment");
     dialog.modal();
   });
 
@@ -74,6 +75,22 @@ require([
         },
       });
     });
+
+  $(".upgrade-environment").click(function() {
+    var el = $(this);
+    var row = getRow(el);
+    var dialog = $("#create-environment-dialog");
+    dialog.find(".repo-input").val(row.data("repo"));
+    dialog.find(".ref-input").val(row.data("ref"));
+    dialog.find(".name-input").val(row.data("display-name"));
+    dialog.find(".memory-input").val(row.data("mem"));
+    dialog.find(".cpu-input").val(row.data("cpu"));
+    dialog.find(".build-args-input").val("");
+    dialog.find(".username-input").val("");
+    dialog.find(".password-input").val("");
+    dialog.find(".save-button").text("Upgrade environment");
+    dialog.modal();
+  });
 
   $(".remove-environment").click(function() {
     var el = $(this);
